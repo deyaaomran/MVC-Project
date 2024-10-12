@@ -1,0 +1,28 @@
+﻿@model RolesViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update Role </h1>
+<br />
+<br />
+
+<form asp-action="Update" >
+
+
+    <partial name="PartialViews/EditCreatePartialView" model="@Model" />
+
+
+    <a asp-action="AddOrRemoveUsers" asp-route-roleId="@Model.Id" class="btn btn-succes">Add or Remove User</a>
+
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
+
+@section ValidtionRequest
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
