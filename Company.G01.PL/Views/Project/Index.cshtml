@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Project</h1>
+<br>
+<br />
+
+
+<a asp-asp-controller="Project" asp-action="Create" class="btn btn-primary">Craete Project</a>
+<br />
+<br />
+@if(Model.Count() > 0)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Budget</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@project.Name</td>
+                    <td>@project.StartDate</td>
+                    <td>@project.EndDate</td>
+                    <td>@project.Budget</td>
+                    <partial name="_ButtonsPartialView" model="@project.id.ToString()" />
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+
+    <div class="alert alert-danger">
+        <h4>There are not Project</h4>
+    </div>
+}
+

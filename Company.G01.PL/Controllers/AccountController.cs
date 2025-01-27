@@ -150,8 +150,8 @@ namespace Company.G01.PL.Controllers
 			return View();
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> SendResetPassword(ForgetPasswordViewModel model)
+		//[HttpPost]
+		public async Task<IActionResult> FrogetPassword(ForgetPasswordViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -183,6 +183,9 @@ namespace Company.G01.PL.Controllers
 			}
 			return View(model);
 		}
+
+		
+
 
 		[HttpGet]
 		public IActionResult CheckYourInbox()

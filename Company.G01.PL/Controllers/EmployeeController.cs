@@ -30,7 +30,7 @@ namespace Company.G01.PL.Controllers
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index(string InputSearch)
+        public async Task<IActionResult> Index(string? InputSearch)
         {
             var employees = Enumerable.Empty<Employee>();
 
@@ -103,6 +103,8 @@ namespace Company.G01.PL.Controllers
         {
             var Department =await _unitOfWork.DepartmentRepository.GetAllAsync();
             ViewData["Department"] = Department;
+            var Position = await _unitOfWork.PositionRepository.GetAllAsync();
+            ViewData["Position"] = Position;
             return View();
         }
 
@@ -177,6 +179,9 @@ namespace Company.G01.PL.Controllers
         {
             var Department =await _unitOfWork.DepartmentRepository.GetAllAsync();
             ViewData["Department"] = Department;
+            var Position = await _unitOfWork.PositionRepository.GetAllAsync();
+            ViewData["Position"] = Position;
+
             return await  Details(id, nameof(Update));
         }
 

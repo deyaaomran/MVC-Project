@@ -1,6 +1,7 @@
 ﻿@model EmployeeViewModel
 @{
     var department = new SelectList(ViewData["Department"] as IEnumerable<Department> ,nameof(Department.id),nameof(Department.name));
+    var position = new SelectList(ViewData["Position"] as IEnumerable<Position>, nameof(Position.id), nameof(Position.Title));
     // if (department is null) return NotFoundResult();
 }
 
@@ -28,10 +29,13 @@
     <span asp-validation-for="Email" class="text-danger"></span>
 </div>
 
-<div class="form-group">
-    <label asp-for="Salary" class="col-form-label"></label>
-    <input asp-for="Salary" class="form-control" />
-    <span asp-validation-for="Salary" class="text-danger"></span>
+<div>
+    <label asp-for="Position" value="Position" class="col-form-control"></label>
+
+    <select asp-for="PositionId" asp-items="position" class="form-control">
+        <option value=""> -- Selet Position -- </option>
+    </select>
+
 </div>
 
 <div class="form-group">

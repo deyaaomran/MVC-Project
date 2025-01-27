@@ -1,0 +1,38 @@
+﻿@model Attendance
+@{
+    var employee = new SelectList(ViewData["Employee"] as IEnumerable<Employee>, nameof(Employee.id), nameof(Employee.id));
+    string[] status = ["Present", "Absent"];
+    var attStatus = new SelectList(status, status.ToString());
+
+}
+
+
+<div>
+    <label asp-for="Employee" value="Employee" class="col-form-control"></label>
+
+    <select asp-for="EmployeeId" asp-items="employee" class="form-control">
+        <option value=""> -- Selet Employee -- </option>
+    </select>
+</div>
+
+
+
+<div class="form-group">
+    <label asp-for="Status" class="col-form-label"></label>
+    <select asp-for="Status" asp-items="attStatus" class="form-control">
+        <option value=""> -- Selet Status -- </option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label asp-for="CheckInTime" class="col-form-label"></label>
+    <input asp-for="CheckInTime" class="form-control" />
+    <span asp-validation-for="CheckInTime" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="CheckOutTime" class="col-form-label"></label>
+    <input asp-for="CheckOutTime" class="form-control" />
+    <span asp-validation-for="CheckOutTime" class="text-danger"></span>
+</div>
+ 

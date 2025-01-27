@@ -20,9 +20,9 @@ namespace Company.G01.PL.ViewModels.Employee
         // [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Salary Is Required !")]
+        //[Required(ErrorMessage = "Salary Is Required !")]
 
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         public decimal Salary { get; set; }
 
         [Phone(ErrorMessage = "Phone Number Must Be Like 010-0xxxxxxx")]
@@ -32,6 +32,11 @@ namespace Company.G01.PL.ViewModels.Employee
         public int? WorkForId { get; set; } // FK
 
         public Department? WorkFor { get; set; } //Navigation Property
+        public int? PositionId { get; set; }
+        public Position? Position { get; set; }
+
+        public int? SaralryForId { get; set; }
+        public Salary? SalaryFor { get; set; }
 
         public IFormFile? Image { get; set; }
         public string? ImageName { get; set; }

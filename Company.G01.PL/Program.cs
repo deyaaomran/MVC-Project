@@ -3,7 +3,7 @@ using Company.G01.BLL.Interfaces;
 using Company.G01.BLL.Repositories;
 using Company.G01.DAL.Models;
 using Company.G01.PL.Mapping.Employees;
-using Company.G01.PL.Services;
+//using Company.G01.PL.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,9 +38,9 @@ namespace Company.G01.PL
             builder.Services.AddAutoMapper(typeof(EmployeeProfile));
 
 
-			builder.Services.AddScoped<IScopedService, ScopedService>();
-            builder.Services.AddSingleton<ISingeltonService, SingeltonService>();
-            builder.Services.AddTransient<ITransientService, TransientService>();
+            //builder.Services.AddScoped<IScopedService, ScopedService>();
+            //builder.Services.AddSingleton<ISingeltonService, SingeltonService>();
+            //builder.Services.AddTransient<ITransientService, TransientService>();
             //builder.Services.AddScoped<UserManager<ApplicationUser>>();
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

@@ -48,11 +48,11 @@
                     <th>@Html.DisplayNameFor(D => D.Address)</th>
                     <th>@Html.DisplayNameFor(D => D.Email)</th>
                     <th>@Html.DisplayNameFor(D => D.PhoneNumber)</th>
-                    <th>@Html.DisplayNameFor(D => D.Salary)</th>
+                    <th>@Html.DisplayNameFor(D => D.Position)</th>
                     <th>@Html.DisplayNameFor(D => D.WorkFor)</th>
                     <th>@Html.DisplayNameFor(D => D.IsActived)</th>
                     <th>@Html.DisplayNameFor(D => D.HireDate)</th>
-
+                    <th>@Html.DisplayNameFor(D => D.SalaryFor)</th>
                     <th>Details</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -70,11 +70,12 @@
                             <td>@employee.Address</td>
                             <td>@employee.Email</td>
                             <td>@employee.PhoneNumber</td>
-                            <td>@employee.Salary</td>
+                            <td>@employee.Position?.Title</td>
                             <td>@employee.WorkFor?.name</td>
                             <td>@employee.IsActived</td>
                             <td>@employee.HireDate</td>
-                            <td>
+                            <td>@employee.SalaryFor?.BaseSalary</td>
+                            
                         <partial name="_ButtonsPartialView" model="@employee.id.ToString()" />
                         </tr>
             }

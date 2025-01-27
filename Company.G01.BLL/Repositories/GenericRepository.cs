@@ -41,10 +41,22 @@ namespace Company.G01.BLL.Repositories
         {
             if(typeof(T) == typeof(Employee))
             {
-                return (IEnumerable<T>) await _Context.employee.Include(E => E.WorkFor).ToListAsync();
+                return (IEnumerable<T>) await _Context.employee.Include(E => E.WorkFor).Include(E => E.Position).Include(E => E.SalaryFor).ToListAsync();
             }
+            else if (typeof(T) == typeof(EmployeeProject))
+            {
+                return (IEnumerable<T>)await _Context.employeeProject.Include(E => E.Project).Include(E => E.Employee).ToListAsync();
+            }
+            else if(typeof(T) == typeof(Salary))
+            {
+				return (IEnumerable<T>)await _Context.salary.Include(E => E.Employee).ToListAsync();
+			}
+            else if (typeof(T) == typeof(Attendance))
+            {
+				return (IEnumerable<T>)await _Context.attendance.Include(E => E.Employee).ToListAsync();
+			}
 
-            return await _Context.Set<T>().ToListAsync();
+				return await _Context.Set<T>().ToListAsync();
         }
 
     }

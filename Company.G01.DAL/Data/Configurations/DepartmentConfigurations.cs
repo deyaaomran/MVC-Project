@@ -17,6 +17,7 @@ namespace Company.G01.DAL.Data.Configurations
             builder.Property(P=>P.id).UseIdentityColumn(10,10);
             builder.Property(U => U.name).IsRequired();
             builder.Property(U => U.Code).IsRequired();
+            
         }
     }
 }

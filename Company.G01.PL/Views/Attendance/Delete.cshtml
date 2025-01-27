@@ -1,0 +1,16 @@
+﻿@model Attendance
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Attendance</h1>
+
+<<form asp-action="Delete">
+
+    <partial name="PartialView/DeleteDetailsPartialView" />
+
+    <br />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-controller="Attendance" asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
+

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Attendance>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Attendance</h1>
+<br>
+<br />
+
+
+<a asp-asp-controller="Attendance" asp-action="Create" class="btn btn-primary">Add Attendance</a>
+<br />
+<br />
+@if(Model.Count() > 0)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>AttendanceId</th>
+                <th>EmployeeId</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>CheckInTime</th>
+                <th>CheckOutTime</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var attend in Model)
+            {
+                <tr>
+                    <td>@attend.id</td>
+                    <td>@attend.EmployeeId</td>
+                    <td>@attend.Date</td>
+                    <td>@attend.Status</td>
+                    <td>@attend.CheckInTime</td>
+                    <td>@attend.CheckOutTime</td>
+                    <partial name="_ButtonsPartialView" model="@attend.id.ToString()" />
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+
+    <div class="alert alert-danger">
+        <h4>There are not Attendance</h4>
+    </div>
+}
+

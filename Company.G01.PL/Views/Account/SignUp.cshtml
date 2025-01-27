@@ -3,7 +3,7 @@
     ViewData["Title"] = "SingUp";
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
-
+<h1>SignUp</h1>
 <div class="main-agileinfo">
 	<div asp-validation-summary="All"></div>
 	<div class="agileits-top">
@@ -17,9 +17,20 @@
 
 			<input class="text email"asp-for="Email" type="email" name="email" placeholder="Email" required="">
 
-			<input class="text" type="password" asp-for="Password" name="password" placeholder="Password" required="">
-			<input class="text w3lpass" asp-for="ConfimedPassword" type="password" name="ConfimedPassword" placeholder="ConfimedPassword" required="">
-
+			<div class="password-container">
+				<input class="text" type="password" asp-for="Password" name="password" placeholder="Password" required="" oninput="checkPasswordStrength()">
+				<input class="text w3lpass" asp-for="ConfimedPassword" type="password" name="ConfirmedPassword" placeholder="Confirm Password" required="">
+				<div id="password-strength" class="strength-bar"></div>
+				<small id="strength-text"></small>
+				<ul id="password-requirements" style="display: none;">
+					<li id="min-length" class="invalid">• At least 8 characters</li>
+					<li id="uppercase" class="invalid">• Contains an uppercase letter</li>
+					<li id="lowercase" class="invalid">• Contains a lowercase letter</li>
+					<li id="number" class="invalid">• Contains a number</li>
+					<li id="special-char" class="invalid">• Contains a special character</li>
+				</ul>
+			</div>
+			
 
 			<div class="wthree-text">
 				<label class="anim">

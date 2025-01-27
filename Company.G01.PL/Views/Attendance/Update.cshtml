@@ -1,0 +1,23 @@
+﻿@model Attendance
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update Attendance</h1>
+<br/>
+
+<br/>
+
+<form asp-action="Update">
+
+    <partial name="PartialView/EditCreateAttendancePartialView" />
+    <br />
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-controller="Attendance" asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
+
+@section ValidtionRequest
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
