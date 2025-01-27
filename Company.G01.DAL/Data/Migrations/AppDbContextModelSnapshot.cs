@@ -98,6 +98,37 @@ namespace Company.G01.DAL.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Company.G01.DAL.Models.Attendance", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<DateTime?>("CheckInTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOutTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("attendance");
+                });
+
             modelBuilder.Entity("Company.G01.DAL.Models.Department", b =>
                 {
                     b.Property<int>("id")
@@ -139,6 +170,9 @@ namespace Company.G01.DAL.Data.Migrations
                     b.Property<DateTime>("DateOfCreation")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("Departmentid")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -163,17 +197,140 @@ namespace Company.G01.DAL.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int?>("PositionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SaralryForId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("WorkForId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
+                    b.HasIndex("Departmentid");
+
+                    b.HasIndex("PositionId");
+
+                    b.HasIndex("SaralryForId");
+
                     b.HasIndex("WorkForId");
 
                     b.ToTable("employee");
+                });
+
+            modelBuilder.Entity("Company.G01.DAL.Models.EmployeeProject", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoursWorked")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("employeeProject");
+                });
+
+            modelBuilder.Entity("Company.G01.DAL.Models.Position", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SalaryRange")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("position");
+                });
+
+            modelBuilder.Entity("Company.G01.DAL.Models.Project", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<decimal>("Budget")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.ToTable("project");
+                });
+
+            modelBuilder.Entity("Company.G01.DAL.Models.Salary", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<decimal>("BaseSalary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Bonus")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Deductions")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("NetPay")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("PayDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("salary");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -309,13 +466,69 @@ namespace Company.G01.DAL.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Company.G01.DAL.Models.Attendance", b =>
+                {
+                    b.HasOne("Company.G01.DAL.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("Company.G01.DAL.Models.Employee", b =>
                 {
-                    b.HasOne("Company.G01.DAL.Models.Department", "WorkFor")
+                    b.HasOne("Company.G01.DAL.Models.Department", null)
                         .WithMany("Employees")
-                        .HasForeignKey("WorkForId");
+                        .HasForeignKey("Departmentid");
+
+                    b.HasOne("Company.G01.DAL.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Company.G01.DAL.Models.Salary", "SalaryFor")
+                        .WithMany()
+                        .HasForeignKey("SaralryForId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Company.G01.DAL.Models.Department", "WorkFor")
+                        .WithMany()
+                        .HasForeignKey("WorkForId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Position");
+
+                    b.Navigation("SalaryFor");
 
                     b.Navigation("WorkFor");
+                });
+
+            modelBuilder.Entity("Company.G01.DAL.Models.EmployeeProject", b =>
+                {
+                    b.HasOne("Company.G01.DAL.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Company.G01.DAL.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Company.G01.DAL.Models.Salary", b =>
+                {
+                    b.HasOne("Company.G01.DAL.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

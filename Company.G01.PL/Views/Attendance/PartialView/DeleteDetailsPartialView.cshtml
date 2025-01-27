@@ -1,0 +1,33 @@
+﻿ @model Attendance
+
+<div class="form-group">
+    <label asp-for="id" class="col-form-label"></label>
+    <input readonly asp-for="id" class="form-control" />
+    <span asp-validation-for="id" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="EmployeeId" class="col-form-label"></label>
+    <input readonly asp-for="EmployeeId" class="form-control" />
+    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Date" class="col-form-label"></label>
+    <input readonly asp-for="Date" class="form-control" />
+</div>
+<div class="form-group">
+    <label asp-for="Status" class="col-form-label"></label>
+    <input readonly asp-for="Status" class="form-control" />
+    <span asp-validation-for="Status" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="CheckInTime" class="col-form-label"></label>
+    <input readonly asp-for="CheckInTime" class="form-control" />
+    <span asp-validation-for="CheckInTime" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="CheckOutTime" class="col-form-label"></label>
+    <input readonly asp-for="CheckOutTime" class="form-control" />
+    <span asp-validation-for="CheckOutTime" class="text-danger"></span>
+</div>

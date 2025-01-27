@@ -10,7 +10,14 @@ namespace Company.G01.BLL.Interfaces
     {
         public IDepartmentRepository DepartmentRepository { get; }
         public IEmployeeRepository EmployeeRepository { get; }
-        public Task<int> CompleteAsync();
+		public IAttendanceRepository AttendanceRepository   { get; }
+		public IEmployeeProjectRepository EmployeeProjectRepository { get; }
+		public IPositionRepository PositionRepository { get; }
+		public IProjectRepository ProjectRepository { get; }
+		public ISalaryRepository SalaryRepository { get; }
+
+
+		public Task<int> CompleteAsync();
 
 
     }

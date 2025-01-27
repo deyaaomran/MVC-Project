@@ -1,0 +1,37 @@
+﻿@model EmployeeProject
+@{
+    var employee = new SelectList(ViewData["Employee"] as IEnumerable<Employee>, nameof(Employee.id), nameof(Employee.id));
+
+    var project = new SelectList(ViewData["Project"] as IEnumerable<Project>, nameof(Project.id), nameof(Project.id));
+
+}
+
+
+<div>
+    <label asp-for="Employee" value="Employee" class="col-form-control"></label>
+
+    <select asp-for="EmployeeId" asp-items="employee" class="form-control">
+        <option value=""> -- Selet Employee -- </option>
+    </select>
+</div>
+
+<div>
+    <label asp-for="Project" value="Project" class="col-form-control"></label>
+
+    <select asp-for="ProjectId" asp-items="project" class="form-control">
+        <option value=""> -- Selet Project -- </option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label asp-for="Role" class="col-form-label"></label>
+    <input asp-for="Role" class="form-control" />
+    <span asp-validation-for="Role" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="HoursWorked" class="col-form-label"></label>
+    <input asp-for="HoursWorked" class="form-control" />
+    <span asp-validation-for="HoursWorked" class="text-danger"></span>
+</div>
+ 

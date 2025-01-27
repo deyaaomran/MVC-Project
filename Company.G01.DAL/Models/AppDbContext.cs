@@ -28,6 +28,12 @@ namespace Company.G01.DAL.Models
 
         public DbSet<Department> department { get; set; }
         public DbSet<Employee> employee { get; set; }
+        public DbSet<EmployeeProject> employeeProject { get; set; }
+        public DbSet<Position> position { get; set; }
+        public DbSet<Project> project { get; set; }    
+        public DbSet<Attendance> attendance { get; set; }
+        public DbSet<Salary> salary { get; set; }
+
         
     }
 }

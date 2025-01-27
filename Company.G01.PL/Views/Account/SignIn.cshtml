@@ -1,21 +1,18 @@
 ﻿@model SignInViewModel
 @{
     ViewData["Title"] = "SignIn";
-    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+	Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
-
+<h1>SignIn</h1>
 <div class="main-agileinfo">
 	<div asp-validation-summary="All"></div>
 	<div class="agileits-top">
 		<form asp-action="SignIn">
 
-
-
-
-			<input class="text email" asp-for="Email" type="email" name="email" placeholder="Email" required="">
+			<input class="text email" type="email" asp-for="Email" name="email" placeholder="Email" required="">
 
 			<input class="text" type="password" asp-for="Password" name="password" placeholder="Password" required="">
-
+			
 
 			<div class="wthree-text">
 				<label class="anim">
@@ -28,7 +25,6 @@
 		</form>
 		<p>Do you forget Password ? <a asp-action="FrogetPassword"> Reset Now!</a></p>
 
-		<p>Don't have an Account? <a asp-action="SignUp"> SignUp Now!</a></p>
+		<p>Don't have an account?<a asp-action="SignUp">Sign up</a></p>
 	</div>
 </div>
-

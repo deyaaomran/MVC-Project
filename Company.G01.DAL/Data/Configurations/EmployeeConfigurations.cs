@@ -11,10 +11,25 @@ namespace Company.G01.DAL.Data.Configurations
 {
     public class EmployeeConfigurations : IEntityTypeConfiguration<Employee>
     {
-            public void Configure(EntityTypeBuilder<Employee> builder)
-            {
-                builder.Property(e => e.Salary).HasColumnType("decimal(18,2)");
-            }
+        public void Configure(EntityTypeBuilder<Employee> builder)
+        {
+            
+            builder.HasOne(e => e.Position)
+                   .WithMany()
+                   .HasForeignKey(e => e.PositionId)
+                   .OnDelete(DeleteBehavior.SetNull);
+
+			builder.HasOne(e => e.SalaryFor)
+					   .WithMany()
+					   .HasForeignKey(e => e.SaralryForId)
+					   .OnDelete(DeleteBehavior.SetNull);
+
+			builder.HasOne(e => e.WorkFor)
+	               .WithMany()
+	               .HasForeignKey(e => e.WorkForId)
+	               .OnDelete(DeleteBehavior.SetNull);
+
+		}
         
     }
 }
